@@ -1,7 +1,7 @@
 import Foundation
 
 /// A cache API used to make custom cache implementations for `ConfigCatClient`.
-@objc public protocol ConfigCache {
+public protocol ConfigCache {
     /**
      Child classes has to implement this method, the `ConfigCatClient`
      uses it to get the actual value from the cache.

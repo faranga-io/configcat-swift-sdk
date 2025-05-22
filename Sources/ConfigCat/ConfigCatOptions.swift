@@ -7,40 +7,40 @@ public final class ConfigCatOptions: NSObject {
      Data Governance preference on the [Dashboard](https://app.configcat.com/organization/data-governance).
      (Only Organization Admins have access)
      */
-    @objc public var dataGovernance: DataGovernance = .global
+    public var dataGovernance: DataGovernance = .global
 
     /// The cache implementation used to cache the downloaded config.json.
-    @objc public var configCache: ConfigCache? = UserDefaultsCache()
+    public var configCache: ConfigCache? = UserDefaultsCache()
 
     /// The polling mode.
-    @objc public var pollingMode: PollingMode = PollingModes.autoPoll()
+    public var pollingMode: PollingMode = PollingModes.autoPoll()
 
     /// Custom `URLSessionConfiguration` used by the HTTP calls.
-    @objc public var sessionConfiguration: URLSessionConfiguration = .default
+    public var sessionConfiguration: URLSessionConfiguration = .default
 
     /// The base ConfigCat CDN url.
-    @objc public var baseUrl: String = ""
+    public var baseUrl: String = ""
 
     /// Feature flag and setting overrides.
-    @objc public var flagOverrides: OverrideDataSource? = nil
+    public var flagOverrides: OverrideDataSource? = nil
 
     /// Default: `LogLevel.warning`. The internal log level.
-    @objc public var logLevel: ConfigCatLogLevel = .warning
+    public var logLevel: ConfigCatLogLevel = .warning
     
     /// The logger used by the SDK.
-    @objc public var logger: ConfigCatLogger = NoLogger()
+    public var logger: ConfigCatLogger = NoLogger()
 
     /// The default user, used as fallback when there's no user parameter is passed to the getValue() method.
-    @objc public var defaultUser: ConfigCatUser? = nil
+    public var defaultUser: ConfigCatUser? = nil
 
     /// Hooks for events sent by ConfigCatClient.
-    @objc public let hooks: Hooks = Hooks()
+    public let hooks: Hooks = Hooks()
 
     /// Indicates whether the SDK should be initialized in offline mode or not.
-    @objc public var offline: Bool = false
+    public var offline: Bool = false
 
     /// The default client configuration options.
-    @objc public static var `default`: ConfigCatOptions {
+    public static var `default`: ConfigCatOptions {
         get {
             ConfigCatOptions()
         }
@@ -48,7 +48,7 @@ public final class ConfigCatOptions: NSObject {
 }
 
 /// Describes the initialization state of the `ConfigCatClient`.
-@objc public enum ClientReadyState: Int {
+public enum ClientReadyState: Int {
     /// The SDK has no feature flag data neither from the cache nor from the ConfigCat CDN.
     case noFlagData
     /// The SDK runs with local only feature flag data.
@@ -72,7 +72,7 @@ public final class Hooks: NSObject {
      Subscribes a handler to the `onReady` hook.
      - Parameter handler: The handler to subscribe.
      */
-    @objc public func addOnReady(handler: @escaping (ClientReadyState) -> ()) {
+    public func addOnReady(handler: @escaping (ClientReadyState) -> ()) {
         mutex.lock()
         defer { mutex.unlock() }
         if let readyState = self.readyState {
@@ -86,7 +86,7 @@ public final class Hooks: NSObject {
      Subscribes a handler to the `onFlagEvaluated` hook.
      - Parameter handler: The handler to subscribe.
      */
-    @objc public func addOnFlagEvaluated(handler: @escaping (EvaluationDetails) -> ()) {
+    public func addOnFlagEvaluated(handler: @escaping (EvaluationDetails) -> ()) {
         mutex.lock()
         defer { mutex.unlock() }
         onFlagEvaluated.append(handler)
@@ -96,7 +96,7 @@ public final class Hooks: NSObject {
      Subscribes a handler to the `onConfigChanged` hook.
      - Parameter handler: The handler to subscribe.
      */
-    @objc public func addOnConfigChanged(handler: @escaping (Config) -> ()) {
+    public func addOnConfigChanged(handler: @escaping (Config) -> ()) {
         mutex.lock()
         defer { mutex.unlock() }
         onConfigChanged.append(handler)
@@ -106,7 +106,7 @@ public final class Hooks: NSObject {
      Subscribes a handler to the `onError` hook.
      - Parameter handler: The handler to subscribe.
      */
-    @objc public func addOnError(handler: @escaping (String) -> ()) {
+    public func addOnError(handler: @escaping (String) -> ()) {
         mutex.lock()
         defer { mutex.unlock() }
         onError.append(handler)
