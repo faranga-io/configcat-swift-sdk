@@ -1,5 +1,3 @@
-import os.log
-import os
 import Foundation
 
 @objc public enum ConfigCatLogLevel: Int {
@@ -56,26 +54,6 @@ class InternalLogger {
     
     func enabled(level: ConfigCatLogLevel) -> Bool {
         return level.rawValue >= self.level.rawValue
-    }
-}
-
-class OSLogger: ConfigCatLogger {
-    private static let log: OSLog = OSLog(subsystem: "com.configcat", category: "main")
-    
-    func debug(message: String) {
-        os_log("%{public}@", log: OSLogger.log, type: .debug, message)
-    }
-    
-    func warning(message: String) {
-        os_log("%{public}@", log: OSLogger.log, type: .info, message)
-    }
-    
-    func info(message: String) {
-        os_log("%{public}@", log: OSLogger.log, type: .info, message)
-    }
-    
-    func error(message: String) {
-        os_log("%{public}@", log: OSLogger.log, type: .error, message)
     }
 }
 

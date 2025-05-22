@@ -1,5 +1,4 @@
 import Foundation
-import os.log
 
 /// Describes the location of your feature flag and setting data within the ConfigCat CDN.
 @objc public enum DataGovernance: Int {

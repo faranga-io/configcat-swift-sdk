@@ -28,7 +28,7 @@ public final class ConfigCatOptions: NSObject {
     @objc public var logLevel: ConfigCatLogLevel = .warning
     
     /// The logger used by the SDK.
-    @objc public var logger: ConfigCatLogger = OSLogger()
+    @objc public var logger: ConfigCatLogger = NoLogger()
 
     /// The default user, used as fallback when there's no user parameter is passed to the getValue() method.
     @objc public var defaultUser: ConfigCatUser? = nil
