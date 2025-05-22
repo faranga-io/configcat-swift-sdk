@@ -8,16 +8,20 @@ let package = Package(
         .iOS(.v12),
         .watchOS(.v4),
         .tvOS(.v12),
-        .macOS(.v10_13)
+        .macOS(.v10_15)
     ],
     products: [
         .library(name: "ConfigCat", targets: ["ConfigCat"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-crypto.git", from: "3.0.0")
     ],
     targets: [
         .target(name: "Version",
                 exclude: ["LICENSE" , "version.txt"]),
         .target(name: "ConfigCat",
-                dependencies: ["Version"],
+                dependencies: ["Version",
+                               .product(name: "Crypto", package: "swift-crypto")],
                 exclude: ["Resources/ConfigCat.h", "Resources/Info.plist"],
                 resources: [.copy("Resources/PrivacyInfo.xcprivacy")],
                 swiftSettings: [

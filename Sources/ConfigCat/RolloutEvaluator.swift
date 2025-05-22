@@ -1,5 +1,5 @@
 import Foundation
-import CommonCrypto
+import Crypto
 
 #if SWIFT_PACKAGE
 import Version
@@ -774,21 +774,15 @@ internal extension Data {
         copy.append(Data((salt + contextSalt).utf8))
         return copy.digestSHA256.hexString
     }
-    
+
     var digestSHA1: Data {
-        var bytes: [UInt8] = Array(repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-        withUnsafeBytes {
-            _ = CC_SHA1($0.baseAddress, CC_LONG(count), &bytes)
-        }
-        return Data(_: bytes)
+        let digest = Insecure.SHA1.hash(data: self)
+        return Data(digest)
     }
-    
+
     var digestSHA256: Data {
-        var bytes: [UInt8] = Array(repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-        withUnsafeBytes {
-            _ = CC_SHA256($0.baseAddress, CC_LONG(count), &bytes)
-        }
-        return Data(_: bytes)
+        let digest = SHA256.hash(data: self)
+        return Data(digest)
     }
 
     var hexString: String {
