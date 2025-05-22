@@ -1,7 +1,7 @@
 import Foundation
 
 /// Describes the location of your feature flag and setting data within the ConfigCat CDN.
-@objc public enum DataGovernance: Int {
+public enum DataGovernance: Int {
     /// Select this if your feature flags are published to all global CDN nodes.
     case global
     /// Select this if your feature flags are published to CDN nodes only in the EU.
@@ -75,7 +75,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
        - options: The configuration options.
      - Returns: The ConfigCatClient instance.
      */
-    @objc public static func get(sdkKey: String, options: ConfigCatOptions? = nil) -> ConfigCatClient {
+    public static func get(sdkKey: String, options: ConfigCatOptions? = nil) -> ConfigCatClient {
         mutex.lock()
         defer { mutex.unlock() }
 
@@ -118,14 +118,14 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
        - configurator: The configuration callback.
      - Returns: The ConfigCatClient instance.
      */
-    @objc public static func get(sdkKey: String, configurator: (ConfigCatOptions) -> ()) -> ConfigCatClient {
+    public static func get(sdkKey: String, configurator: (ConfigCatOptions) -> ()) -> ConfigCatClient {
         let options = ConfigCatOptions.default
         configurator(options)
         return get(sdkKey: sdkKey, options: options)
     }
 
     /// Closes all ConfigCatClient instances.
-    @objc public static func closeAll() {
+    public static func closeAll() {
         mutex.lock()
         defer { mutex.unlock() }
 
@@ -136,10 +136,10 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
     }
 
     /// Hooks for subscribing events.
-    @objc public let hooks: Hooks
+    public let hooks: Hooks
 
     /// Closes the underlying resources.
-    @objc public func close() {
+    public func close() {
         ConfigCatClient.mutex.lock()
         defer { ConfigCatClient.mutex.unlock() }
 
@@ -215,7 +215,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
      - Parameter user: The user object to identify the caller.
      - Parameter completion: The function which will be called when the feature flag or setting is evaluated.
      */
-    @objc public func getAllValueDetails(user: ConfigCatUser? = nil, completion: @escaping ([EvaluationDetails]) -> ()) {
+    public func getAllValueDetails(user: ConfigCatUser? = nil, completion: @escaping ([EvaluationDetails]) -> ()) {
         getSettings { result in
             if result.isEmpty {
                 self.log.error(eventId: 1000, message: "Config JSON is not present. Returning empty array.")
@@ -236,7 +236,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
     }
 
     /// Gets all the setting keys asynchronously.
-    @objc public func getAllKeys(completion: @escaping ([String]) -> ()) {
+    public func getAllKeys(completion: @escaping ([String]) -> ()) {
         getSettings { result in
             if result.isEmpty {
                 self.log.error(eventId: 1000, message: "Config JSON is not present. Returning empty array.")
@@ -248,7 +248,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
     }
 
     /// Gets the key of a setting and it's value identified by the given Variation ID (analytics)
-    @objc public func getKeyAndValue(for variationId: String, completion: @escaping (KeyValue?) -> ()) {
+    public func getKeyAndValue(for variationId: String, completion: @escaping (KeyValue?) -> ()) {
         getSettings { result in
             if result.isEmpty {
                 self.log.error(eventId: 1000, message: "Config JSON is not present. Returning nil.")
@@ -307,7 +307,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
     }
 
     /// Gets the values of all feature flags or settings asynchronously.
-    @objc public func getAllValues(user: ConfigCatUser? = nil, completion: @escaping ([String: Any]) -> ()) {
+    public func getAllValues(user: ConfigCatUser? = nil, completion: @escaping ([String: Any]) -> ()) {
         getSettings { result in
             if result.isEmpty {
                 self.log.error(eventId: 1000, message: "Config JSON is not present. Returning empty array.")
@@ -332,7 +332,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
 
      - Parameter completion: The function which will be called when refresh completed successfully.
      */
-    @objc public func forceRefresh(completion: @escaping (RefreshResult) -> ()) {
+    public func forceRefresh(completion: @escaping (RefreshResult) -> ()) {
         if let configService = configService {
             configService.refresh(completion: completion)
         } else {
@@ -342,7 +342,7 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
         }
     }
     
-    @objc public func snapshot() -> ConfigCatSnapshot {
+    public func snapshot() -> ConfigCatSnapshot {
         return ConfigCatSnapshot(flagEvaluator: flagEvaluator, settingsSnapshot: getInMemorySettings(), defaultUser: defaultUser, log: log)
     }
     
@@ -422,27 +422,27 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
     }
 
     /// Sets the default user.
-    @objc public func setDefaultUser(user: ConfigCatUser) {
+    public func setDefaultUser(user: ConfigCatUser) {
         defaultUser = user
     }
 
     /// Sets the default user to null.
-    @objc public func clearDefaultUser() {
+    public func clearDefaultUser() {
         defaultUser = nil
     }
 
     /// Configures the SDK to allow HTTP requests.
-    @objc public func setOnline() {
+    public func setOnline() {
         configService?.setOnline()
     }
 
     /// Configures the SDK to not initiate HTTP requests.
-    @objc public func setOffline() {
+    public func setOffline() {
         configService?.setOffline()
     }
 
     /// True when the SDK is configured not to initiate HTTP requests, otherwise false.
-    @objc public var isOffline: Bool {
+    public var isOffline: Bool {
         get {
             configService?.isOffline ?? true
         }

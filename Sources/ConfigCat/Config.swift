@@ -7,7 +7,7 @@ enum RedirectMode: Int {
     case forceRedirect = 2
 }
 
-@objc public enum SegmentComparator: Int {
+public enum SegmentComparator: Int {
     case unknown = -1
     /// Checks whether the conditions of the specified segment are evaluated to true.
     case isIn = 0
@@ -19,7 +19,7 @@ enum RedirectMode: Int {
     }
 }
 
-@objc public enum PrerequisiteFlagComparator: Int {
+public enum PrerequisiteFlagComparator: Int {
     case unknown = -1
     /// Checks whether the evaluated value of the specified prerequisite flag is equal to the comparison value.
     case eq = 0
@@ -31,7 +31,7 @@ enum RedirectMode: Int {
     }
 }
 
-@objc public enum SettingType: Int {
+public enum SettingType: Int {
     case unknown = -1
     /// The on/off type (feature flag).
     case bool = 0
@@ -58,7 +58,7 @@ enum RedirectMode: Int {
     }
 }
 
-@objc public enum UserComparator: Int {
+public enum UserComparator: Int {
     case unknown = -1
     /// Checks whether the comparison attribute is equal to any of the comparison values.
     case oneOf = 0
@@ -276,11 +276,11 @@ public class Config: NSObject, JsonSerializable {
     static let segmentsKey = "s"
 
     /// The dictionary of settings.
-    @objc public let settings: [String: Setting]
+    public let settings: [String: Setting]
     /// The list of segments.
-    @objc public let segments: [Segment]
+    public let segments: [Segment]
     /// The salt that was used to hash sensitive comparison values.
-    @objc public let salt: String?
+    public let salt: String?
     
     let preferences: Preferences
 
@@ -387,22 +387,22 @@ public final class Setting: NSObject, JsonSerializable {
     static let variationIdKey = "i"
 
     /// The value that is returned when none of the targeting rules or percentage options yield a result.
-    @objc public let value: SettingValue
+    public let value: SettingValue
 
     /// The list of percentage options.
-    @objc public let percentageOptions: [PercentageOption]
+    public let percentageOptions: [PercentageOption]
 
     /// The list of targeting rules (where there is a logical OR relation between the items).
-    @objc public let targetingRules: [TargetingRule]
+    public let targetingRules: [TargetingRule]
 
     /// Variation ID (for analytical purposes).
-    @objc public let variationId: String?
+    public let variationId: String?
     
     /// The User Object attribute which serves as the basis of percentage options evaluation.
-    @objc public let percentageAttribute: String
+    public let percentageAttribute: String
     
     /// The setting's type. It can be `bool`, `string`, `int` or `double`.
-    @objc public let settingType: SettingType
+    public let settingType: SettingType
     
     var salt: String?
 
@@ -467,10 +467,10 @@ public final class Segment: NSObject, JsonSerializable {
     static let conditionsKey = "r"
 
     /// The name of the segment.
-    @objc public let name: String?
+    public let name: String?
 
     /// The list of segment rule conditions (has a logical AND relation between the items).
-    @objc public let conditions: [UserCondition]
+    public let conditions: [UserCondition]
 
     init(name: String?, conditions: [UserCondition]) {
         self.name = name
@@ -502,13 +502,13 @@ public final class TargetingRule: NSObject, JsonSerializable {
     static let percentageOptionsKey = "p"
 
     /// The value associated with the targeting rule or nil if the targeting rule has percentage options THEN part.
-    @objc public let servedValue: ServedValue?
+    public let servedValue: ServedValue?
 
     /// The list of conditions that are combined with the AND logical operator.
-    @objc public let conditions: [Condition]
+    public let conditions: [Condition]
 
     /// The list of percentage options associated with the targeting rule or empty if the targeting rule has a served value THEN part.
-    @objc public let percentageOptions: [PercentageOption]
+    public let percentageOptions: [PercentageOption]
 
     init(servedValue: ServedValue?, conditions: [Condition], percentageOptions: [PercentageOption]) {
         self.servedValue = servedValue
@@ -553,13 +553,13 @@ public final class Condition: NSObject, JsonSerializable {
     static let prereqKey = "p"
 
     /// Describes a condition that works with User Object attributes.
-    @objc public let userCondition: UserCondition?
+    public let userCondition: UserCondition?
 
     /// Describes a condition that works with a segment.
-    @objc public let segmentCondition: SegmentCondition?
+    public let segmentCondition: SegmentCondition?
     
     /// Describes a condition that works with a prerequisite flag.
-    @objc public let prerequisiteFlagCondition: PrerequisiteFlagCondition?
+    public let prerequisiteFlagCondition: PrerequisiteFlagCondition?
 
     init(userCondition: UserCondition?, segmentCondition: SegmentCondition?, prerequisiteFlagCondition: PrerequisiteFlagCondition?) {
         self.userCondition = userCondition
@@ -604,22 +604,22 @@ public final class UserCondition: NSObject, JsonSerializable {
     static let stringArrValKey = "l"
 
     /// The value that the User Object attribute is compared to, when the comparator works with a single text comparison value.
-    @objc public let stringValue: String?
+    public let stringValue: String?
     
     /// The value that the User Object attribute is compared to, when the comparator works with a numeric comparison value.
     public let doubleValue: Double?
     
     /// The value in Objective-C format that the User Object attribute is compared to, when the comparator works with a numeric comparison value.
-    @objc public let doubleValueObjC: NSNumber?
+    public let doubleValueObjC: NSNumber?
     
     /// The value that the User Object attribute is compared to, when the comparator works with an array of text comparison value.
-    @objc public let stringArrayValue: [String]?
+    public let stringArrayValue: [String]?
 
     /// The operator which defines the relation between the comparison attribute and the comparison value.
-    @objc public let comparator: UserComparator
+    public let comparator: UserComparator
 
     /// The User Object attribute that the condition is based on. Can be "Identifier", "Email", "Country" or any custom attribute.
-    @objc public let comparisonAttribute: String?
+    public let comparisonAttribute: String?
 
     init(stringValue: String?, doubleValue: Double?, stringArrayValue: [String]?, comparator: UserComparator, comparisonAttribute: String?) {
         self.stringValue = stringValue
@@ -696,10 +696,10 @@ public final class SegmentCondition: NSObject, JsonSerializable {
     static let comparatorKey = "c"
 
     /// Identifies the segment that the condition is based on.
-    @objc public let index: Int
+    public let index: Int
 
     /// The operator which defines the expected result of the evaluation of the segment.
-    @objc public let segmentComparator: SegmentComparator
+    public let segmentComparator: SegmentComparator
     
     var segment: Segment?
 
@@ -731,13 +731,13 @@ public final class PrerequisiteFlagCondition: NSObject, JsonSerializable {
     static let valueKey = "v"
 
     /// The key of the prerequisite flag that the condition is based on.
-    @objc public let flagKey: String?
+    public let flagKey: String?
 
     /// The operator which defines the relation between the evaluated value of the prerequisite flag and the comparison value.
-    @objc public let prerequisiteComparator: PrerequisiteFlagComparator
+    public let prerequisiteComparator: PrerequisiteFlagComparator
     
     /// The evaluated value of the prerequisite flag is compared to.
-    @objc public let flagValue: SettingValue
+    public let flagValue: SettingValue
 
     init(flagKey: String?, prerequisiteComparator: PrerequisiteFlagComparator, flagValue: SettingValue) {
         self.flagKey = flagKey
@@ -780,20 +780,20 @@ public final class SettingValue: NSObject, JsonSerializable {
     /// Holds a bool feature flag's value.
     public let boolValue: Bool?
     
-    @objc public let boolValueObjC: NSNumber?
+    public let boolValueObjC: NSNumber?
     
     /// Holds a string setting's value.
-    @objc public let stringValue: String?
+    public let stringValue: String?
     
     /// Holds a decimal number setting's value.
     public let doubleValue: Double?
     
-    @objc public let doubleValueObjC: NSNumber?
+    public let doubleValueObjC: NSNumber?
     
     /// Holds a whole number setting's value.
     public let intValue: Int?
     
-    @objc public let intValueObjC: NSNumber?
+    public let intValueObjC: NSNumber?
     
     private let invalidValue: Any?
     
@@ -935,10 +935,10 @@ public final class ServedValue: NSObject, JsonSerializable {
     static let idKey = "i"
 
     /// The value associated with the targeting rule.
-    @objc public let value: SettingValue
+    public let value: SettingValue
     
     /// Variation ID (for analytical purposes).
-    @objc public let variationId: String?
+    public let variationId: String?
 
     init(value: SettingValue, variationId: String?) {
         self.value = value
@@ -965,13 +965,13 @@ public final class PercentageOption: NSObject, JsonSerializable {
     static let variationIdKey = "i"
 
     /// The served value of the percentage option.
-    @objc public let servedValue: SettingValue
+    public let servedValue: SettingValue
 
     /// A number between 0 and 100 that represents a randomly allocated fraction of the users.
-    @objc public let percentage: Int
+    public let percentage: Int
 
     /// Variation ID (for analytical purposes).
-    @objc public let variationId: String?
+    public let variationId: String?
 
     init(servedValue: SettingValue, percentage: Int, variationId: String?) {
         self.servedValue = servedValue
