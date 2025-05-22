@@ -1,22 +1,22 @@
 import Foundation
 
-public class EvaluationDetailsBase: NSObject {
+public class EvaluationDetailsBase {
     /// Key of the feature flag or setting.
-    @objc public let key: String
+    public let key: String
     /// Variation ID of the feature flag or setting (if available).
-    @objc public let variationId: String?
+    public let variationId: String?
     /// The User Object used for the evaluation (if available).
-    @objc public let user: ConfigCatUser?
+    public let user: ConfigCatUser?
     /// Indicates whether the default value passed to the setting evaluation methods is used as the result of the evaluation.
-    @objc public let isDefaultValue: Bool
+    public let isDefaultValue: Bool
     /// Error message in case evaluation failed.
-    @objc public let error: String?
+    public let error: String?
     /// Time of last successful config download.
-    @objc public let fetchTime: Date
+    public let fetchTime: Date
     /// The targeting rule (if any) that matched during the evaluation and was used to return the evaluated value.
-    @objc public let matchedTargetingRule: TargetingRule?
+    public let matchedTargetingRule: TargetingRule?
     /// The percentage option (if any) that was used to select the evaluated value.
-    @objc public let matchedPercentageOption: PercentageOption?
+    public let matchedPercentageOption: PercentageOption?
 
     init(key: String,
          variationId: String?,
@@ -38,7 +38,7 @@ public class EvaluationDetailsBase: NSObject {
 }
 
 public final class EvaluationDetails: EvaluationDetailsBase {
-    @objc public let value: Any
+    public let value: Any
 
     init(key: String,
          value: Any,
@@ -60,7 +60,7 @@ public final class EvaluationDetails: EvaluationDetailsBase {
 
 public final class StringEvaluationDetails: EvaluationDetailsBase {
     /// Evaluated value of the feature flag or setting.
-    @objc public let value: String
+    public let value: String
 
     init(value: String,
          base: EvaluationDetailsBase) {
@@ -71,7 +71,7 @@ public final class StringEvaluationDetails: EvaluationDetailsBase {
 
 public final class BoolEvaluationDetails: EvaluationDetailsBase {
     /// Evaluated value of the feature flag or setting.
-    @objc public let value: Bool
+    public let value: Bool
 
     init(value: Bool,
          base: EvaluationDetailsBase) {
@@ -82,7 +82,7 @@ public final class BoolEvaluationDetails: EvaluationDetailsBase {
 
 public final class IntEvaluationDetails: EvaluationDetailsBase {
     /// Evaluated value of the feature flag or setting.
-    @objc public let value: Int
+    public let value: Int
 
     init(value: Int,
          base: EvaluationDetailsBase) {
@@ -93,7 +93,7 @@ public final class IntEvaluationDetails: EvaluationDetailsBase {
 
 public final class DoubleEvaluationDetails: EvaluationDetailsBase {
     /// Evaluated value of the feature flag or setting.
-    @objc public let value: Double
+    public let value: Double
 
     init(value: Double,
          base: EvaluationDetailsBase) {

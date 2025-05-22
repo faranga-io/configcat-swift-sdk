@@ -1,6 +1,6 @@
 import Foundation
 
-public class KeyValue: NSObject {
+public class KeyValue {
     public let key: String?
     public let value: Any?
 

@@ -18,9 +18,9 @@ class SettingsResult {
     static let empty = SettingsResult(settings: [:], fetchTime: .distantPast)
 }
 
-public final class RefreshResult: NSObject {
-    @objc public let success: Bool
-    @objc public let error: String?
+public final class RefreshResult {
+    public let success: Bool
+    public let error: String?
 
     init(success: Bool, error: String? = nil) {
         self.success = success

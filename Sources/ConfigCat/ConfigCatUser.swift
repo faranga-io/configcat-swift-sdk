@@ -1,10 +1,10 @@
 import Foundation
 
 /// User Object. Contains user attributes which are used for evaluating targeting rules and percentage options.
-public final class ConfigCatUser: NSObject {
-    @objc public static let idKey: String = "Identifier"
-    @objc public static let emailKey: String = "Email"
-    @objc public static let countryKey: String = "Country"
+public final class ConfigCatUser {
+    public static let idKey: String = "Identifier"
+    public static let emailKey: String = "Email"
+    public static let countryKey: String = "Country"
     
     private var attributes: [String: Any]
     
@@ -47,7 +47,7 @@ public final class ConfigCatUser: NSObject {
      * accept `String` values containing a valid JSON string which can be deserialized to an array of `String`,
      * all other values are considered invalid (a warning will be logged and the currently evaluated targeting rule will be skipped).
      */
-    @objc public init(identifier: String,
+    public init(identifier: String,
                       email: String? = nil,
                       country: String? = nil,
                       custom: [String: Any]? = nil) {
@@ -84,7 +84,7 @@ public final class ConfigCatUser: NSObject {
      - Parameter key: The key of the user attribute.
      - Returns: The user attribute value.
      */
-    @objc public func attribute(for key: String) -> Any? {
+    public func attribute(for key: String) -> Any? {
         if key.isEmpty {
             assert(false, "key cannot be empty")
         }
@@ -98,7 +98,7 @@ public final class ConfigCatUser: NSObject {
         return key == ConfigCatUser.idKey || key == ConfigCatUser.emailKey || key == ConfigCatUser.countryKey
     }
     
-    public override var description: String {
+    public var description: String {
         var map = [String: Any]()
         for (key, value) in attributes {
             switch value {

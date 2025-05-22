@@ -1,7 +1,7 @@
 import Foundation
 
 /// Describes a polling mode.
-@objc public protocol PollingMode {
+public protocol PollingMode {
     var identifier: String { get }
 }
 

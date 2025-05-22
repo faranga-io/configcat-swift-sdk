@@ -1,7 +1,7 @@
 import Foundation
 
 /// Configuration options for `ConfigCatClient`.
-public final class ConfigCatOptions: NSObject {
+public final class ConfigCatOptions {
     /**
      Default: `DataGovernance.global`. Set this parameter to be in sync with the
      Data Governance preference on the [Dashboard](https://app.configcat.com/organization/data-governance).
@@ -60,7 +60,7 @@ public enum ClientReadyState: Int {
 }
 
 /// Hooks for events sent by `ConfigCatClient`.
-public final class Hooks: NSObject {
+public final class Hooks {
     private let mutex: Mutex = Mutex(recursive: true);
     private var readyState: ClientReadyState?
     private var onReady: [(ClientReadyState) -> ()] = []

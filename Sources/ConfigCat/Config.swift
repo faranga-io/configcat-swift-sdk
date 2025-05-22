@@ -270,7 +270,7 @@ class ConfigEntry: Equatable {
     static let empty = ConfigEntry(eTag: "empty")
 }
 
-public class Config: NSObject, JsonSerializable {
+public class Config: JsonSerializable {
     static let preferencesKey = "p"
     static let settingsKey = "f"
     static let segmentsKey = "s"
@@ -378,7 +378,7 @@ class Preferences: JsonSerializable {
     }
 }
 
-public final class Setting: NSObject, JsonSerializable {
+public final class Setting: JsonSerializable {
     static let valueKey = "v"
     static let percentageAttributeKey = "a"
     static let settingTypeKey = "t"
@@ -462,7 +462,7 @@ public final class Setting: NSObject, JsonSerializable {
     }
 }
 
-public final class Segment: NSObject, JsonSerializable {
+public final class Segment: JsonSerializable {
     static let nameKey = "n"
     static let conditionsKey = "r"
 
@@ -496,7 +496,7 @@ public final class Segment: NSObject, JsonSerializable {
     }
 }
 
-public final class TargetingRule: NSObject, JsonSerializable {
+public final class TargetingRule: JsonSerializable {
     static let valueKey = "s"
     static let conditionsKey = "c"
     static let percentageOptionsKey = "p"
@@ -547,7 +547,7 @@ public final class TargetingRule: NSObject, JsonSerializable {
     }
 }
 
-public final class Condition: NSObject, JsonSerializable {
+public final class Condition: JsonSerializable {
     static let userKey = "u"
     static let segmentKey = "s"
     static let prereqKey = "p"
@@ -595,7 +595,7 @@ public final class Condition: NSObject, JsonSerializable {
     }
 }
 
-public final class UserCondition: NSObject, JsonSerializable {
+public final class UserCondition: JsonSerializable {
     static let stringListMaxLength = 10
     static let comparatorKey = "c"
     static let comparisonAttributeKey = "a"
@@ -652,7 +652,7 @@ public final class UserCondition: NSObject, JsonSerializable {
         ]
     }
     
-    public override var description: String {
+    public var description: String {
         let res = "User.\(unwrappedComparisonAttribute) \(comparatorTexts[comparator] ?? "<invalid comparator>") "
         if stringValue == nil && doubleValue == nil && stringArrayValue == nil {
             return res + "<invalid value>"
@@ -691,7 +691,7 @@ public final class UserCondition: NSObject, JsonSerializable {
     }
 }
 
-public final class SegmentCondition: NSObject, JsonSerializable {
+public final class SegmentCondition: JsonSerializable {
     static let indexKey = "s"
     static let comparatorKey = "c"
 
@@ -720,12 +720,12 @@ public final class SegmentCondition: NSObject, JsonSerializable {
         ]
     }
     
-    public override var description: String {
+    public var description: String {
         return "User \(segmentComparator.text) '\(segment?.name ?? "<invalid name>")'"
     }
 }
 
-public final class PrerequisiteFlagCondition: NSObject, JsonSerializable {
+public final class PrerequisiteFlagCondition: JsonSerializable {
     static let flagKeyKey = "f"
     static let comparatorKey = "c"
     static let valueKey = "v"
@@ -759,7 +759,7 @@ public final class PrerequisiteFlagCondition: NSObject, JsonSerializable {
         ]
     }
     
-    public override var description: String {
+    public var description: String {
         return "Flag '\(flagKey ?? "<invalid key>")' \(prerequisiteComparator.text) '\(flagValue.anyValue ?? "<invalid value>")'"
     }
 }
@@ -769,7 +769,7 @@ enum ValueResult {
     case error(String)
 }
 
-public final class SettingValue: NSObject, JsonSerializable {
+public final class SettingValue: JsonSerializable {
     static let boolKey = "b"
     static let stringKey = "s"
     static let doubleKey = "d"
@@ -930,7 +930,7 @@ public final class SettingValue: NSObject, JsonSerializable {
     }
 }
 
-public final class ServedValue: NSObject, JsonSerializable {
+public final class ServedValue: JsonSerializable {
     static let valueKey = "v"
     static let idKey = "i"
 
@@ -959,7 +959,7 @@ public final class ServedValue: NSObject, JsonSerializable {
 }
 
 
-public final class PercentageOption: NSObject, JsonSerializable {
+public final class PercentageOption: JsonSerializable {
     static let valueKey = "v"
     static let percentageKey = "p"
     static let variationIdKey = "i"
