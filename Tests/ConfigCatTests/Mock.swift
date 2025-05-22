@@ -57,7 +57,7 @@ class FailingCache: ConfigCache {
     }
 }
 
-class InMemoryConfigCache: NSObject, ConfigCache {
+class InMemoryConfigCache: ConfigCache {
     public var store = [String: String]()
 
     public func read(for key: String) throws -> String {
@@ -69,7 +69,7 @@ class InMemoryConfigCache: NSObject, ConfigCache {
     }
 }
 
-class SingleValueCache: NSObject, ConfigCache {
+class SingleValueCache: ConfigCache {
     var value: String
 
     init(initValue: String) {

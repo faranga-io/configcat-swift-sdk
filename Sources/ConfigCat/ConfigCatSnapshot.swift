@@ -1,6 +1,6 @@
 import Foundation
 
-public final class ConfigCatSnapshot: NSObject {
+public final class ConfigCatSnapshot {
     private let flagEvaluator: FlagEvaluator
     private let settingsSnapshot: SettingsResult
     private let defaultUser: ConfigCatUser?

@@ -1,6 +1,6 @@
 import Foundation
 
-@objc public enum ConfigCatLogLevel: Int {
+public enum ConfigCatLogLevel: Int {
     case debug
     case info
     case warning
@@ -8,7 +8,7 @@ import Foundation
     case nolog
 }
 
-@objc public protocol ConfigCatLogger {
+public protocol ConfigCatLogger {
     func debug(message: String)
     func warning(message: String)
     func info(message: String)

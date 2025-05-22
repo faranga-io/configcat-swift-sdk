@@ -1,7 +1,7 @@
 import Foundation
 
 /// Describes the polling modes.
-public final class PollingModes: NSObject {
+public final class PollingModes {
     /**
     Creates a new `AutoPollingMode`.
 
@@ -9,7 +9,7 @@ public final class PollingModes: NSObject {
     - Parameter maxInitWaitTimeInSeconds: maximum waiting time between initialization and the first config acquisition in seconds.
     - Returns: A new `AutoPollingMode`.
     */
-    @objc public static func autoPoll(autoPollIntervalInSeconds: Int = 60, maxInitWaitTimeInSeconds: Int = 5) -> PollingMode {
+    public static func autoPoll(autoPollIntervalInSeconds: Int = 60, maxInitWaitTimeInSeconds: Int = 5) -> PollingMode {
         AutoPollingMode(autoPollIntervalInSeconds: autoPollIntervalInSeconds, maxInitWaitTimeInSeconds: maxInitWaitTimeInSeconds)
     }
 
@@ -19,7 +19,7 @@ public final class PollingModes: NSObject {
     - Parameter cacheRefreshIntervalInSeconds: sets how long the cache will store its value before fetching the latest from the network again.
     - Returns: A new `LazyLoadingMode`.
     */
-    @objc public static func lazyLoad(cacheRefreshIntervalInSeconds: Int = 60) -> PollingMode {
+    public static func lazyLoad(cacheRefreshIntervalInSeconds: Int = 60) -> PollingMode {
         LazyLoadingMode(cacheRefreshIntervalInSeconds: cacheRefreshIntervalInSeconds)
     }
 
@@ -28,7 +28,7 @@ public final class PollingModes: NSObject {
     
     - Returns: A new `ManualPollingMode`.
     */
-    @objc public static func manualPoll() -> PollingMode {
+    public static func manualPoll() -> PollingMode {
         ManualPollingMode()
     }
 }

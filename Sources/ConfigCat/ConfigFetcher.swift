@@ -44,7 +44,7 @@ class URLSessionEngine: HttpEngine {
     }
 }
 
-class ConfigFetcher: NSObject {
+class ConfigFetcher {
     private let log: InternalLogger
     private let httpEngine: HttpEngine
     @Synced private var baseUrl: String

@@ -1,13 +1,13 @@
 import Foundation
 
-public class OverrideDataSource: NSObject {
+public class OverrideDataSource {
     let behaviour: OverrideBehaviour
 
     init(behaviour: OverrideBehaviour) {
         self.behaviour = behaviour
     }
 
-    @objc public func getOverrides() -> [String: Setting] {
+    public func getOverrides() -> [String: Setting] {
         [:]
     }
 }

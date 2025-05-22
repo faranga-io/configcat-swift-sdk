@@ -1,27 +1,27 @@
 import Foundation
 
 extension ConfigCatClient {
-    @objc public func getStringValue(for key: String, defaultValue: String, user: ConfigCatUser?, completion: @escaping (String) -> ()) {
+    public func getStringValue(for key: String, defaultValue: String, user: ConfigCatUser?, completion: @escaping (String) -> ()) {
         return getValue(for: key, defaultValue: defaultValue, user: user, completion: completion)
     }
 
-    @objc public func getIntValue(for key: String, defaultValue: Int, user: ConfigCatUser?, completion: @escaping (Int) -> ()) {
+    public func getIntValue(for key: String, defaultValue: Int, user: ConfigCatUser?, completion: @escaping (Int) -> ()) {
         return getValue(for: key, defaultValue: defaultValue, user: user, completion: completion)
     }
 
-    @objc public func getDoubleValue(for key: String, defaultValue: Double, user: ConfigCatUser?, completion: @escaping (Double) -> ()) {
+    public func getDoubleValue(for key: String, defaultValue: Double, user: ConfigCatUser?, completion: @escaping (Double) -> ()) {
         return getValue(for: key, defaultValue: defaultValue, user: user, completion: completion)
     }
 
-    @objc public func getBoolValue(for key: String, defaultValue: Bool, user: ConfigCatUser?, completion: @escaping (Bool) -> ()) {
+    public func getBoolValue(for key: String, defaultValue: Bool, user: ConfigCatUser?, completion: @escaping (Bool) -> ()) {
         return getValue(for: key, defaultValue: defaultValue, user: user, completion: completion)
     }
 
-    @objc public func getAnyValue(for key: String, defaultValue: Any, user: ConfigCatUser?, completion: @escaping (Any) -> ()) {
+    public func getAnyValue(for key: String, defaultValue: Any, user: ConfigCatUser?, completion: @escaping (Any) -> ()) {
         return getValue(for: key, defaultValue: defaultValue, user: user, completion: completion)
     }
 
-    @objc public func getAnyValueDetails(for key: String, defaultValue: Any, user: ConfigCatUser?, completion: @escaping (EvaluationDetails) -> ()) {
+    public func getAnyValueDetails(for key: String, defaultValue: Any, user: ConfigCatUser?, completion: @escaping (EvaluationDetails) -> ()) {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user) { details in
             completion(EvaluationDetails(key: details.key,
                     value: details.value,
@@ -35,25 +35,25 @@ extension ConfigCatClient {
         }
     }
 
-    @objc public func getStringValueDetails(for key: String, defaultValue: String, user: ConfigCatUser?, completion: @escaping (StringEvaluationDetails) -> ()) {
+    public func getStringValueDetails(for key: String, defaultValue: String, user: ConfigCatUser?, completion: @escaping (StringEvaluationDetails) -> ()) {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user) { details in
             completion(details.toStringDetails())
         }
     }
 
-    @objc public func getBoolValueDetails(for key: String, defaultValue: Bool, user: ConfigCatUser?, completion: @escaping (BoolEvaluationDetails) -> ()) {
+    public func getBoolValueDetails(for key: String, defaultValue: Bool, user: ConfigCatUser?, completion: @escaping (BoolEvaluationDetails) -> ()) {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user) { details in
             completion(details.toBoolDetails())
         }
     }
 
-    @objc public func getIntValueDetails(for key: String, defaultValue: Int, user: ConfigCatUser?, completion: @escaping (IntEvaluationDetails) -> ()) {
+    public func getIntValueDetails(for key: String, defaultValue: Int, user: ConfigCatUser?, completion: @escaping (IntEvaluationDetails) -> ()) {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user) { details in
             completion(details.toIntDetails())
         }
     }
 
-    @objc public func getDoubleValueDetails(for key: String, defaultValue: Double, user: ConfigCatUser?, completion: @escaping (DoubleEvaluationDetails) -> ()) {
+    public func getDoubleValueDetails(for key: String, defaultValue: Double, user: ConfigCatUser?, completion: @escaping (DoubleEvaluationDetails) -> ()) {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user) { details in
             completion(details.toDoubleDetails())
         }
@@ -145,27 +145,27 @@ extension ConfigCatClient {
 }
 
 extension ConfigCatSnapshot {
-    @objc public func getStringValue(for key: String, defaultValue: String, user: ConfigCatUser?) -> String {
+    public func getStringValue(for key: String, defaultValue: String, user: ConfigCatUser?) -> String {
         return getValue(for: key, defaultValue: defaultValue, user: user)
     }
 
-    @objc public func getIntValue(for key: String, defaultValue: Int, user: ConfigCatUser?) -> Int {
+    public func getIntValue(for key: String, defaultValue: Int, user: ConfigCatUser?) -> Int {
         return getValue(for: key, defaultValue: defaultValue, user: user)
     }
 
-    @objc public func getDoubleValue(for key: String, defaultValue: Double, user: ConfigCatUser?) -> Double {
+    public func getDoubleValue(for key: String, defaultValue: Double, user: ConfigCatUser?) -> Double {
         return getValue(for: key, defaultValue: defaultValue, user: user)
     }
 
-    @objc public func getBoolValue(for key: String, defaultValue: Bool, user: ConfigCatUser?) -> Bool {
+    public func getBoolValue(for key: String, defaultValue: Bool, user: ConfigCatUser?) -> Bool {
         return getValue(for: key, defaultValue: defaultValue, user: user)
     }
 
-    @objc public func getAnyValue(for key: String, defaultValue: Any, user: ConfigCatUser?) -> Any {
+    public func getAnyValue(for key: String, defaultValue: Any, user: ConfigCatUser?) -> Any {
         return getValue(for: key, defaultValue: defaultValue, user: user)
     }
 
-    @objc public func getAnyValueDetails(for key: String, defaultValue: Any, user: ConfigCatUser?) -> EvaluationDetails {
+    public func getAnyValueDetails(for key: String, defaultValue: Any, user: ConfigCatUser?) -> EvaluationDetails {
         let details = getValueDetails(for: key, defaultValue: defaultValue, user: user)
         return EvaluationDetails(key: details.key,
                                  value: details.value,
@@ -178,19 +178,19 @@ extension ConfigCatSnapshot {
                                  matchedPercentageOption: details.matchedPercentageOption)
     }
 
-    @objc public func getStringValueDetails(for key: String, defaultValue: String, user: ConfigCatUser?) -> StringEvaluationDetails {
+    public func getStringValueDetails(for key: String, defaultValue: String, user: ConfigCatUser?) -> StringEvaluationDetails {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user).toStringDetails()
     }
 
-    @objc public func getBoolValueDetails(for key: String, defaultValue: Bool, user: ConfigCatUser?) -> BoolEvaluationDetails {
+    public func getBoolValueDetails(for key: String, defaultValue: Bool, user: ConfigCatUser?) -> BoolEvaluationDetails {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user).toBoolDetails()
     }
 
-    @objc public func getIntValueDetails(for key: String, defaultValue: Int, user: ConfigCatUser?) -> IntEvaluationDetails {
+    public func getIntValueDetails(for key: String, defaultValue: Int, user: ConfigCatUser?) -> IntEvaluationDetails {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user).toIntDetails()
     }
 
-    @objc public func getDoubleValueDetails(for key: String, defaultValue: Double, user: ConfigCatUser?) -> DoubleEvaluationDetails {
+    public func getDoubleValueDetails(for key: String, defaultValue: Double, user: ConfigCatUser?) -> DoubleEvaluationDetails {
         return getValueDetails(for: key, defaultValue: defaultValue, user: user).toDoubleDetails()
     }
 }

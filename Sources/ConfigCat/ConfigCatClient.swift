@@ -9,7 +9,7 @@ public enum DataGovernance: Int {
 }
 
 /// ConfigCat SDK client.
-public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
+public final class ConfigCatClient: ConfigCatClientProtocol {
     private let log: InternalLogger
     private let flagEvaluator: FlagEvaluator
     private let configService: ConfigService?
@@ -144,9 +144,6 @@ public final class ConfigCatClient: NSObject, ConfigCatClientProtocol {
         defer { ConfigCatClient.mutex.unlock() }
 
         closeResources()
-        if let weakClient = ConfigCatClient.instances[sdkKey], weakClient.get() == self {
-            ConfigCatClient.instances.removeValue(forKey: sdkKey)
-        }
     }
 
     func closeResources() {

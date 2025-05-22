@@ -3,7 +3,7 @@ import Foundation
 public class LocalDictionaryDataSource: OverrideDataSource {
     private var settings: [String: Setting] = [:]
 
-    @objc public init(source: [String: Any], behaviour: OverrideBehaviour) {
+    public init(source: [String: Any], behaviour: OverrideBehaviour) {
         super.init(behaviour: behaviour)
         for (key, value) in source {
             settings[key] = Setting.fromAnyValue(value: value)
