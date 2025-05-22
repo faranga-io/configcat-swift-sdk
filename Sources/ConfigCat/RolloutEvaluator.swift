@@ -1,6 +1,5 @@
 import Foundation
 import CommonCrypto
-import os.log
 
 #if SWIFT_PACKAGE
 import Version
