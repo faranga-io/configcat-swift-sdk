@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// Configuration options for `ConfigCatClient`.
 public final class ConfigCatOptions {
