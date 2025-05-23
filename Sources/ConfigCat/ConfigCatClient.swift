@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// Describes the location of your feature flag and setting data within the ConfigCat CDN.
 public enum DataGovernance: Int {
@@ -310,7 +313,7 @@ public final class ConfigCatClient: ConfigCatClientProtocol {
                 self.log.error(eventId: 1000, message: "Config JSON is not present. Returning empty array.")
                 completion([:])
                 return
-            }        
+            }
             var allValues = [String: Any]()
             for key in result.settings.keys {
                 guard let setting = result.settings[key] else {
