@@ -13,9 +13,9 @@ final class Mutex {
         var attr = pthread_mutexattr_t()
         pthread_mutexattr_init(&attr)
         if recursive {
-            pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE)
+            pthread_mutexattr_settype(&attr, Int32(PTHREAD_MUTEX_RECURSIVE))
         } else {
-            pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_NORMAL)
+            pthread_mutexattr_settype(&attr, Int32(PTHREAD_MUTEX_NORMAL))
         }
         let result = pthread_mutex_init(mutex, &attr)
         assert(result == 0, "Failed to init mutex.")

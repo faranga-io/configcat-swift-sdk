@@ -54,7 +54,7 @@ public final class ConfigCatSnapshot {
     }
     
     /// Gets all the setting keys within the snapshot.
-    @objc public func getAllKeys() -> [String] {
+    public func getAllKeys() -> [String] {
         if settingsSnapshot.isEmpty {
             log.error(eventId: 1000, message: "Config JSON is not present. Returning empty array.")
             return []
